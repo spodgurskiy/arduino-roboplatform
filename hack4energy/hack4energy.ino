@@ -1,10 +1,13 @@
+/*
+ * Connect DHT11 sensors to ports GPIO 2,3,4
+ */
+
 #include <dht11.h>
 #include <SPI.h>
 #include <Ethernet.h>
 dht11 DHT11;
 
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
-//char server[] = "192.168.0.77:8080";
 char server[] = "web-manufacture.net";    
 IPAddress ip(192, 168, 0, 177);
 EthernetClient client;
@@ -25,12 +28,9 @@ void loop(){
     connect();
   }else{
     client.println(reportSensor(2));
+    client.println(reportSensor(3));
+    client.println(reportSensor(4));
   }
-
-//  Serial.print("\n");
-//  reportSensor(2);
-//  reportSensor(3);
-//  reportSensor(4);
   delay(2000);
 }
 
